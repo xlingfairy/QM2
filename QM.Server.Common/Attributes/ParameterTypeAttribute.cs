@@ -25,6 +25,11 @@ namespace QM.Server.Common.Attributes
         /// <summary>
         /// 
         /// </summary>
+        public string Desc { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <param name="type"></param>
         public ParameterTypeAttribute(Type type)
         {

@@ -30,7 +30,7 @@ namespace QM.Server.Api.Entity
         /// 
         /// </summary>
         [DataMember]
-        public string JobName { get; set; }
+        public string Desc { get; set; }
 
         /// <summary>
         /// 
@@ -52,13 +52,15 @@ namespace QM.Server.Api.Entity
         /// <param name="type"></param>
         public JobInDll(Type type)
         {
+            var attr = type.GetCustomAttribute<ParameterTypeAttribute>(false);
+
             this.DllPath = type.Assembly.Location;
-            this.JobName = type.GetCustomAttribute<DescriptionAttribute>()?.Description ?? type.Name;
             this.JobType = type.FullName;
 
-            var attr = type.GetCustomAttribute<ParameterTypeAttribute>(false);
             if (attr != null)
             {
+                this.Desc = attr.Desc;
+
                 var dic = JobDataMapParser.GetSupportProperties(attr.ParameterType);
                 this.Parameters = dic?.Select(d =>
                 {

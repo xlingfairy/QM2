@@ -13,7 +13,7 @@ namespace QM.Server.TestJob
     /// <summary>
     /// 
     /// </summary>
-    [Description("Test Job A"), ParameterType(typeof(TestJobAParameter))]
+    [ParameterType(typeof(TestJobAParameter), Desc = "测试JOB")]
     public class TestJobA : IJob
     {
         public Task Execute(IJobExecutionContext context)
