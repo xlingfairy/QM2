@@ -70,11 +70,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controller\CalendarsController.cs" />
+    <Compile Include="Controller\DiscoverController.cs" />
     <Compile Include="Controller\JobsController.cs" />
     <Compile Include="Controller\SchedulerController.cs" />
     <Compile Include="Controller\ServerController.cs" />
     <Compile Include="Controller\ServerRepository.cs" />
     <Compile Include="Controller\TriggersController.cs" />
+    <Compile Include="RemoteObjectProxy.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

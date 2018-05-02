@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting.Lifetime;
 
@@ -43,7 +45,7 @@ namespace QM.Server
 
         public RemoteObject GetObject(string assemblyFile, string typeFullName)
         {
-            var name = Assembly.GetExecutingAssembly().FullName;
+            //var name = Assembly.GetExecutingAssembly().FullName;
             //如果用 CreateInstanceAndUnwrap 只能把 ApplicationBas 设为主程充的 BaseDirectory, 这样子域就不能有自己的 ApplicationBase 了.
             //var obj = (RemoteObject)this.Domain.CreateInstanceAndUnwrap(name, typeof(RemoteObject).FullName);
             var obj = (RemoteObject)this.Domain.CreateInstanceFromAndUnwrap(Assembly.GetExecutingAssembly().Location, typeof(RemoteObject).FullName);
@@ -54,6 +56,7 @@ namespace QM.Server
 
             return obj;
         }
+
 
         /// <summary>
         /// 

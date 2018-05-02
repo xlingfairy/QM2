@@ -64,8 +64,8 @@ namespace QM.Server
                 this.Scheduler.Shutdown();
             }
 
-            //if (this._WebApp != null)
-            //    this._WebApp.Dispose();
+            if (this._WebApp != null)
+                this._WebApp.Dispose();
 
             return true;
         }
