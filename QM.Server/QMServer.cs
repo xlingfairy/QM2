@@ -2,6 +2,9 @@
 using QM.Server.Api;
 using Quartz;
 using Quartz.Impl;
+using Quartz.Impl.AdoJobStore;
+using Quartz.Impl.AdoJobStore.Common;
+using Quartz.Util;
 using System;
 using Topshelf;
 
@@ -33,13 +36,27 @@ namespace QM.Server
         {
             try
             {
-                //var f = DirectSchedulerFactory.Instance;
+                //var tp = new Quartz.Simpl.DefaultThreadPool()
+                //{
+                //    MaxConcurency = 10,
+                //    ThreadCount = 10
+                //};
+
+                //DBConnectionManager.Instance.AddConnectionProvider("ds", new DbProvider("SqlServer", "connectionString"));
+                //var js = new JobStoreTX()
+                //{
+                //    DataSource = "ds",
+                //};
+
+                //DirectSchedulerFactory.Instance.CreateScheduler("QM", "QM1", tp, js);
+
                 this.Factory = new StdSchedulerFactory();
                 this.Scheduler = await this.Factory.GetScheduler();
+
                 this.Scheduler.JobFactory = new IsolatedJobFactory();
                 this.CanStart = true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 this.CanStart = false;
             }
