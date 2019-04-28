@@ -7,37 +7,26 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class TimeZoneDto
     {
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="timeZone"></param>
-        public TimeZoneDto(TimeZoneInfo timeZone)
-        {
-            Id = timeZone.Id;
-            StandardName = timeZone.StandardName;
-            DisplayName = timeZone.DisplayName;
-        }
+        
+        public string Id { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
-        public string Id { get; }
+        
+        public string StandardName { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
-        public string StandardName { get; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string DisplayName { get; }
+        
+        public string DisplayName { get; set; }
     }
 }

@@ -9,32 +9,32 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class GroupMatcherDto
     {
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string NameContains { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string NameEndsWith { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string NameStartsWith { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string NameEquals { get; set; }
 
         /// <summary>

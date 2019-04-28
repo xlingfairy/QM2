@@ -24,6 +24,8 @@ namespace QM.Server.Api
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            //GlobalConfiguration.Configuration.Formatters
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             config.IncludeErrorDetailPolicy = IncludeErrorDetailPolicy.LocalOnly;
 

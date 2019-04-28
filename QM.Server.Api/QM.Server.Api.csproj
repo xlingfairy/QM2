@@ -69,6 +69,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controller\BaseController.cs" />
     <Compile Include="Controller\CalendarsController.cs" />
     <Compile Include="Controller\DiscoverController.cs" />
     <Compile Include="Controller\JobsController.cs" />

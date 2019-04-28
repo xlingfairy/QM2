@@ -12,151 +12,130 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class CalendarDetailDto
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="calendar"></param>
-        protected CalendarDetailDto(ICalendar calendar)
-        {
-            CalendarType = calendar.GetType().AssemblyQualifiedNameWithoutVersion();
-            Description = calendar.Description;
-            if (calendar.CalendarBase != null)
-            {
-                CalendarBase = Create(calendar.CalendarBase);
-            }
-        }
+        
+        public string CalendarType { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
-        public string CalendarType { get; }
+        
+        public string Description { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
-        public string Description { get; }
+        public CalendarDetailDto CalendarBase { get; set; }
+
+    }
+
+
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class AnnualCalendarDto : CalendarDetailDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public IReadOnlyCollection<DateTime> DaysExcluded { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        public CalendarDetailDto CalendarBase { get; }
+        public TimeZoneDto TimeZone { get; set; }
+    }
 
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public class CronCalendarDto : CalendarDetailDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public string CronExpression { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="calendar"></param>
-        /// <returns></returns>
-        public static CalendarDetailDto Create(ICalendar calendar)
-        {
-            if (calendar is AnnualCalendar annualCalendar)
-            {
-                return new AnnualCalendarDto(annualCalendar);
-            }
+        public TimeZoneDto TimeZone { get; set; }
+    }
 
-            if (calendar is CronCalendar cronCalendar)
-            {
-                return new CronCalendarDto(cronCalendar);
-            }
 
-            if (calendar is DailyCalendar dailyCalendar)
-            {
-                return new DailyCalendarDto(dailyCalendar);
-            }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class DailyCalendarDto : CalendarDetailDto
+    {
 
-            if (calendar is HolidayCalendar holidayCalendar)
-            {
-                return new HolidayCalendarDto(holidayCalendar);
-            }
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool InvertTimeRange { get; set; }
 
-            if (calendar is MonthlyCalendar monthlyCalendar)
-            {
-                return new MonthlyCalendarDto(monthlyCalendar);
-            }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TimeZoneDto TimeZone { get; set; }
+    }
 
-            if (calendar is WeeklyCalendar weeklyCalendar)
-            {
-                return new WeeklyCalendarDto(weeklyCalendar);
-            }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class HolidayCalendarDto : CalendarDetailDto
+    {
 
-            return new CalendarDetailDto(calendar);
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IReadOnlyList<DateTime> ExcludedDates { get; set; }
 
-        public class AnnualCalendarDto : CalendarDetailDto
-        {
-            public AnnualCalendarDto(AnnualCalendar calendar) : base(calendar)
-            {
-                DaysExcluded = calendar.DaysExcluded;
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TimeZoneDto TimeZone { get; set; }
+    }
 
-            public IReadOnlyCollection<DateTime> DaysExcluded { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
 
-        public class CronCalendarDto : CalendarDetailDto
-        {
-            public CronCalendarDto(CronCalendar calendar) : base(calendar)
-            {
-                CronExpression = calendar.CronExpression.CronExpressionString;
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class MonthlyCalendarDto : CalendarDetailDto
+    {
 
-            public string CronExpression { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public IReadOnlyList<bool> DaysExcluded { get; set; }
 
-        public class DailyCalendarDto : CalendarDetailDto
-        {
-            public DailyCalendarDto(DailyCalendar calendar) : base(calendar)
-            {
-                InvertTimeRange = calendar.InvertTimeRange;
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TimeZoneDto TimeZone { get; set; }
+    }
 
-            public bool InvertTimeRange { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
 
-        public class HolidayCalendarDto : CalendarDetailDto
-        {
-            public HolidayCalendarDto(HolidayCalendar calendar) : base(calendar)
-            {
-                ExcludedDates = calendar.ExcludedDates.ToList();
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
+    /// <summary>
+    /// 
+    /// </summary>
+    public class WeeklyCalendarDto : CalendarDetailDto
+    {
+        /// <summary>
+        /// 
+        /// </summary>
+        public IReadOnlyList<bool> DaysExcluded { get; set; }
 
-            public IReadOnlyList<DateTime> ExcludedDates { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
-
-        public class MonthlyCalendarDto : CalendarDetailDto
-        {
-            public MonthlyCalendarDto(MonthlyCalendar calendar) : base(calendar)
-            {
-                DaysExcluded = calendar.DaysExcluded.ToList();
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
-
-            public IReadOnlyList<bool> DaysExcluded { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
-
-        public class WeeklyCalendarDto : CalendarDetailDto
-        {
-            public WeeklyCalendarDto(WeeklyCalendar calendar) : base(calendar)
-            {
-                DaysExcluded = calendar.DaysExcluded.ToList();
-                TimeZone = new TimeZoneDto(calendar.TimeZone);
-            }
-
-            public IReadOnlyList<bool> DaysExcluded { get; }
-            public TimeZoneDto TimeZone { get; }
-        }
+        /// <summary>
+        /// 
+        /// </summary>
+        public TimeZoneDto TimeZone { get; set; }
     }
 }

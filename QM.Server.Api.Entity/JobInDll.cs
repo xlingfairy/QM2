@@ -23,26 +23,26 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string DllPath { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Desc { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string JobType { get; set; }
 
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public List<JobParameterInfo> Parameters { get; set; }
 
 

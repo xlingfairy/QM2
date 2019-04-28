@@ -7,39 +7,19 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class KeyDto
     {
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="jobKey"></param>
-        public KeyDto(JobKey jobKey)
-        {
-            Name = jobKey.Name;
-            Group = jobKey.Group;
-        }
+        
+        public string Name { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="triggerKey"></param>
-        public KeyDto(TriggerKey triggerKey)
-        {
-            Name = triggerKey.Name;
-            Group = triggerKey.Group;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Name { get; private set; }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        [DataMember]
-        public string Group { get; private set; }
+        
+        public string Group { get; set; }
     }
 }

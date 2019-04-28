@@ -6,7 +6,7 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class SchedulerStatisticsDto
     {
         /// <summary>
@@ -21,7 +21,7 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public int NumberOfJobsExecuted { get; private set; }
     }
 }

@@ -23,7 +23,11 @@ namespace QM.Server.Api.Controller
             return dirs.SelectMany(dir => this.Get(dir));
         }
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="dir"></param>
+        /// <returns></returns>
         private List<JobInDll> Get(string dir)
         {
             var dlls = System.IO.Directory.GetFiles(dir, "*.dll");

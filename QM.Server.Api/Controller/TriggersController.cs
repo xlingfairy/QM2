@@ -1,4 +1,5 @@
-﻿using QM.Server.Api.Entity;
+﻿using QM.Server.Api.Converters;
+using QM.Server.Api.Entity;
 using Quartz;
 using Quartz.Impl;
 using System.Collections.Generic;
@@ -8,9 +9,19 @@ using System.Web.Http;
 
 namespace QM.Server.Api.Controller
 {
+
+    /// <summary>
+    /// 
+    /// </summary>
     [RoutePrefix("api/schedulers/{schedulerName}/triggers")]
-    public class TriggersController : ApiController
+    public class TriggersController : BaseController
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="schedulerName"></param>
+        /// <param name="groupMatcher"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("")]
         public async Task<IReadOnlyList<KeyDto>> Triggers(string schedulerName, GroupMatcherDto groupMatcher)
@@ -19,7 +30,7 @@ namespace QM.Server.Api.Controller
             var matcher = (groupMatcher ?? new GroupMatcherDto()).GetTriggerGroupMatcher();
             var jobKeys = await scheduler.GetTriggerKeys(matcher).ConfigureAwait(false);
 
-            return jobKeys.Select(x => new KeyDto(x)).ToList();
+            return jobKeys.Select(x => x.ToDto()).ToList();
         }
 
         [HttpGet]
@@ -31,7 +42,7 @@ namespace QM.Server.Api.Controller
             var calendar = trigger.CalendarName != null
                 ? await scheduler.GetCalendar(trigger.CalendarName).ConfigureAwait(false)
                 : null;
-            return TriggerDetailDto.Create(trigger, calendar);
+            return  trigger.ToDto(calendar);
         }
 
         [HttpPost]
@@ -68,15 +79,5 @@ namespace QM.Server.Api.Controller
             await scheduler.ResumeTriggers(matcher).ConfigureAwait(false);
         }
 
-        private static async Task<IScheduler> GetScheduler(string schedulerName)
-        {
-            var scheduler = await SchedulerRepository.Instance.Lookup(schedulerName).ConfigureAwait(false);
-            if (scheduler == null)
-            {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
-                throw new KeyNotFoundException($"Scheduler {schedulerName} not found!");
-            }
-            return scheduler;
-        }
     }
 }

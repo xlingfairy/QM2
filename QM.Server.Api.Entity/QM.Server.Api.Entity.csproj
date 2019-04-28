@@ -47,6 +47,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarDetailDto.cs" />
+    <Compile Include="Converters\CalendarConverter.cs" />
+    <Compile Include="Converters\CurrentlyExecutingJobConverter.cs" />
+    <Compile Include="Converters\DailyTimeIntervalTriggerDetailConverter.cs" />
+    <Compile Include="Converters\KeyConverter.cs" />
+    <Compile Include="Converters\TimezoneConverter.cs" />
+    <Compile Include="Converters\TriggerDetailConverter.cs" />
     <Compile Include="CurrentlyExecutingJobDto.cs" />
     <Compile Include="GroupMatcherDto.cs" />
     <Compile Include="JobDetailDto.cs" />

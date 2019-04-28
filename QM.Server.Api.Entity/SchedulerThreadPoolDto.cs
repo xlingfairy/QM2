@@ -8,7 +8,7 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class SchedulerThreadPoolDto
     {
         /// <summary>
@@ -24,13 +24,13 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Type { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public int Size { get; private set; }
     }
 }

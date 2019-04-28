@@ -6,7 +6,7 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class SchedulerDto
     {
         /// <summary>
@@ -29,37 +29,37 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string SchedulerInstanceId { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Name { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public SchedulerStatus Status { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public SchedulerThreadPoolDto ThreadPool { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public SchedulerJobStoreDto JobStore { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public SchedulerStatisticsDto Statistics { get; }
     }
 }

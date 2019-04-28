@@ -10,7 +10,7 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class ServerDetailsDto
     {
         /// <summary>
@@ -27,19 +27,19 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Name { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Address { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public IReadOnlyList<string> Schedulers { get; set; } 
     }
 }

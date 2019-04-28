@@ -13,7 +13,7 @@ namespace QM.Server.Api.Controller
     /// Web API endpoint for scheduler information.
     /// </summary>
     [RoutePrefix("api/schedulers")]
-    public class SchedulerController : ApiController
+    public class SchedulerController : BaseController
     {
         [HttpGet]
         [Route("")]
@@ -71,15 +71,6 @@ namespace QM.Server.Api.Controller
             await scheduler.Clear().ConfigureAwait(false);
         }
 
-        private static async Task<IScheduler> GetScheduler(string schedulerName)
-        {
-            var scheduler = await SchedulerRepository.Instance.Lookup(schedulerName).ConfigureAwait(false);
-            if (scheduler == null)
-            {
-                //throw new HttpResponseException(HttpStatusCode.NotFound);
-                throw new KeyNotFoundException($"Scheduler {schedulerName} not found!");
-            }
-            return scheduler;
-        }
+
     }
 }

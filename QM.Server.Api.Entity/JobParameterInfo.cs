@@ -16,25 +16,25 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Name { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Value { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Desc { get; internal set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Type { get; internal set; }
     }
 }

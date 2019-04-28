@@ -8,7 +8,7 @@ namespace QM.Server.Api.Entity
     /// <summary>
     /// 
     /// </summary>
-    [DataContract]
+    
     public class SchedulerJobStoreDto
     {
         public SchedulerJobStoreDto(SchedulerMetaData metaData)
@@ -21,19 +21,19 @@ namespace QM.Server.Api.Entity
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public string Type { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public bool Clustered { get; private set; }
 
         /// <summary>
         /// 
         /// </summary>
-        [DataMember]
+        
         public bool Persistent { get; private set; }
     }
 }

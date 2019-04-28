@@ -3,7 +3,7 @@
 namespace QM.Server.Api.Entity
 {
 
-    [DataContract]
+    
     public enum SchedulerStatus
     {
         /// <summary>
